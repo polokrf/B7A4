@@ -1,0 +1,25 @@
+model TechnicianProfile {
+  id String @id @default(uuid())
+
+  userId String @unique
+
+  bio String?
+
+  experience Int
+
+  skills String[]
+
+  location String
+
+  hourlyRate Float
+
+  averageRating Float @default(0)
+
+  completedJobs Int @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}

@@ -1,0 +1,19 @@
+model Payment {
+  id String @id @default(uuid())
+
+  bookingId String @unique
+
+  amount Float
+
+  transactionId String @unique
+
+  status PaymentStatus @default(PENDING)
+
+  paidAt DateTime?
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
