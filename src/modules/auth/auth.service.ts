@@ -75,10 +75,14 @@ const getProfileDB = async (id:string,role:boolean) => {
     where: {
       id:id
     },
+    omit: {
+        password:true
+      },
     ...(role && {
       include: {
         technicianProfile:true
-      }
+      },
+      
     })
   })
 
