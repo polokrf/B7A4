@@ -11,17 +11,20 @@ const createTechnicianProfile = catchAsync(async (req:Request, res:Response, nex
   successRes(res,{success:true,status:201,message:'create technician profile successfully',data:result})
 })
 
-const getTechnicianProfile = catchAsync(async (req:Request, res:Response, next:NextFunction) => {
-  
-  const result = await technicianService.getTechnicianProDB()
+const getTechnicianProfile = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await technicianService.getTechnicianProDB(req.query);
 
-  successRes(res, {
-    success: true,
-    status: 200,
-    message: 'retrieve technician profile successfully',
-    data: result
-  })
-})
+    successRes(res, {
+      success: true,
+      status: 200,
+      message: 'Technician profiles fetched successfully',
+
+      data: result.data,
+      meta: result.meta,
+    });
+  },
+);
 const getSingleTechnicianProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   
   const id =req.params.id

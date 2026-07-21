@@ -12,16 +12,19 @@ const creteService = catchAsync(async (req:Request, res:Response, next:NextFunct
   successRes(res,{success:true,status:201,message:'create service successfully',data:result})
 
 })
-const getAllService = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const services = await servicesService.getAllServiceDB()
-   successRes(res, {
-     success: true,
-     status: 200,
-     message: 'retrieve service successfully',
-     data: services,
-   });
-  
-})
+const getAllService = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await servicesService.getAllServiceDB(req.query);
+
+    successRes(res, {
+      success: true,
+      status: 200,
+      message: 'Services fetched successfully',
+      data: result.data,
+     meta:result?.meta
+    });
+  },
+);
 const getSingleService = catchAsync(async (req:Request, res:Response, next:NextFunction) => {
   const { id } = req.params
   
@@ -52,7 +55,7 @@ const deleteService = catchAsync(async (req:Request, res:Response, next:NextFunc
   const id = req.params.id!
   const userId = req.user?.id!
 
-  await servicesService.deleteServiceDB(id, userId)
+  await servicesService.deleteServiceDB(id as string, userId)
 
   successRes(res, {
     success: true,

@@ -1,11 +1,17 @@
 import { Response } from "express";
 
+export interface IMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPage: number;
+}
 interface IResponse<T>{
   success: boolean,
   status:number,
   message: string,
   data?: T,
-  meta?:T
+  meta?:IMeta
 }
 
 

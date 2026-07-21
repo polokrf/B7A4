@@ -34,3 +34,12 @@ enum WeekDay {
   FRIDAY
   SATURDAY
 }
+
+enum PaymentMethod {
+  CARD
+}
+
+enum PaymentProvider {
+  STRIPE
+  SSLCOMMERZ
+}
