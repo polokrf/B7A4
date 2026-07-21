@@ -30,6 +30,10 @@ app.use(cookieParser())
 app.use('/api/auth', authRouter)
 app.use('/api/technician', technicianRouter);
 
+app.get('/', async (req: Request, res: Response) => {
+  res.send({ message: 'sever is connect!' });
+});
+
 app.use('/api/services', serviceRouter);
 app.use('/api/availability',availabilityRouter);
 app.use('/api/bookings', bookingRouter);
@@ -39,9 +43,7 @@ app.use('/api/review', reviewRouter)
 app.use('/api/admin', adminRouter)
 
 
-app.get('/', (req:Request, res:Response) => {
-  res.json({message:'sever is connect!'})
-})
+
 
 app.use(notFound)
 app.use(globalError)
