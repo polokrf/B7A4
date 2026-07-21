@@ -1,5 +1,5 @@
 import cookieParser from 'cookie-parser';
-import express from 'express'
+import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { authRouter } from './modules/auth/auth.route';
 import { globalError } from './Middlewear/globalError';
@@ -36,7 +36,12 @@ app.use('/api/bookings', bookingRouter);
 app.use('/api/payment', paymentRouter);
 app.use('/api/review', reviewRouter)
 
-app.use('/api/admin',adminRouter)
+app.use('/api/admin', adminRouter)
+
+
+app.get('/', (req:Request, res:Response) => {
+  res.json({message:'sever is connect!'})
+})
 
 app.use(notFound)
 app.use(globalError)
