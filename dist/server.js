@@ -1890,6 +1890,9 @@ app.use(express9.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/technician", technicianRouter);
+app.get("/", async (req, res) => {
+  res.send({ message: "sever is connect!" });
+});
 app.use("/api/services", serviceRouter);
 app.use("/api/availability", availabilityRouter);
 app.use("/api/bookings", bookingRouter);

@@ -41,7 +41,7 @@ const getProfile = catchAsync(async (req: Request, res: Response, next: NextFunc
   successRes(res, {
     success: true,
     status: 200,
-    message: 'Login user successfully',
+    message: 'get user profile successfully',
     data:profile ,
   });
 })
