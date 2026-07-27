@@ -279,7 +279,7 @@ var getProfile = catchAsync_default(async (req, res, next) => {
   successRes(res, {
     success: true,
     status: 200,
-    message: "Login user successfully",
+    message: "get user profile successfully",
     data: profile
   });
 });
