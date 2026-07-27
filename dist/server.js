@@ -1130,7 +1130,7 @@ var bookingController = {
 
 // src/modules/bookings/bookings.route.ts
 var router5 = express5.Router();
-router5.post("/", jwtAuth_default(), bookingController.createBooking);
+router5.post("/", jwtAuth_default("CUSTOMER"), bookingController.createBooking);
 router5.get("/", jwtAuth_default(), bookingController.getAllBooking);
 router5.get("/:id", jwtAuth_default(), bookingController.getSingleBooking);
 router5.patch("/:id", jwtAuth_default("TECHNICIAN"), bookingController.updateBooking);
