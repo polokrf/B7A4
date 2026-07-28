@@ -546,7 +546,7 @@ var technicianController = {
 // src/modules/technician/technician.route.ts
 var router2 = express2.Router();
 router2.post("/profile", jwtAuth_default("TECHNICIAN"), technicianController.createTechnicianProfile);
-router2.get("/", jwtAuth_default(), technicianController.getTechnicianProfile);
+router2.get("/", technicianController.getTechnicianProfile);
 router2.get("/:id", jwtAuth_default(), technicianController.getSingleTechnicianProfile);
 var technicianRouter = router2;
 

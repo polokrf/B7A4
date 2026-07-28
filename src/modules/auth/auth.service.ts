@@ -4,9 +4,14 @@ import bcrypt  from "bcryptjs"
 import { ILogin, IRegisterUser } from "./auth.interface"
 import jwt, { SignOptions } from 'jsonwebtoken'
 import { jwtToken } from "../../utils/jwt"
+import { Role } from "../../../generated/prisma/enums"
 
 const userRegisterDB = async (payload:IRegisterUser) => {
   const { name, email, password, address, phone, role } = payload
+
+  if (role !== Role.CUSTOMER && role !== Role.TECHNICIAN) {
+    throw new Error('Invalid role')
+  }
 
   const userExist = await prisma.user.findUnique({
     where: {
