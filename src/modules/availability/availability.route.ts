@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post('/', auth('TECHNICIAN'), availabilityController.createAvailability)
 router.get('/', auth('TECHNICIAN'), availabilityController.getMyAvailability)
-router.patch('/:id', auth('TECHNICIAN'), availabilityController.updateAvailability)
+router.patch('/', auth('TECHNICIAN'), availabilityController.updateAvailability)
 router.delete('/:id',auth('TECHNICIAN'),availabilityController.deleteAvailability)
 
 

@@ -869,10 +869,9 @@ var getMyAvailability = catchAsync_default(async (req, res, next) => {
   });
 });
 var updateAvailability = catchAsync_default(async (req, res, next) => {
-  const id = req.params?.id;
   const userId = req.user?.id;
   const payload = req.body;
-  const result = await availabilityService.updateAvailabilityDB(payload, id, userId);
+  const result = await availabilityService.updateAvailabilityDB(payload, payload.id, userId);
   successRes(res, {
     success: true,
     status: 200,
