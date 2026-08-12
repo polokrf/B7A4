@@ -85,7 +85,8 @@ const getProfileDB = async (id:string,role:boolean) => {
       },
     ...(role && {
       include: {
-        technicianProfile:true
+        technicianProfile: true,
+        availability:true
       },
       
     })

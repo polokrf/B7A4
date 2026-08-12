@@ -173,6 +173,9 @@ var jwtToken = {
 // src/modules/auth/auth.service.ts
 var userRegisterDB = async (payload) => {
   const { name, email, password, address, phone, role } = payload;
+  if (role !== Role.CUSTOMER && role !== Role.TECHNICIAN) {
+    throw new Error("Invalid role");
+  }
   const userExist = await prisma.user.findUnique({
     where: {
       email
@@ -246,7 +249,8 @@ var successRes = (res, data) => {
     success: data.success,
     status: data.status,
     message: data.message,
-    data: data?.data
+    data: data?.data,
+    meta: data?.meta
   });
 };
 

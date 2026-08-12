@@ -21,5 +21,6 @@ export const successRes = <T>(res: Response, data: IResponse<T>) => {
     status: data.status,
     message: data.message,
     data: data?.data,
+    meta:data?.meta
   })
 };
