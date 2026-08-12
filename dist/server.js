@@ -231,7 +231,8 @@ var getProfileDB = async (id, role) => {
     },
     ...role && {
       include: {
-        technicianProfile: true
+        technicianProfile: true,
+        availability: true
       }
     }
   });

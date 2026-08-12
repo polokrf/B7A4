@@ -28,11 +28,11 @@ const getMyAvailability = catchAsync(async (req:Request, res:Response, next:Next
   });
 })
 const updateAvailability = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const id = req.params?.id!
-  const userId = req.user?.id
+  
+  const userId = req.user?.id!
   const payload = req.body
 
-  const result = await availabilityService.updateAvailabilityDB(payload,id, userId)
+  const result = await availabilityService.updateAvailabilityDB(payload,payload.id, userId)
   
   successRes(res, {
     success: true,
