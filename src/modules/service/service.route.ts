@@ -7,7 +7,7 @@ router.post('/', auth('TECHNICIAN'), serviceController.creteService)
 
 router.get('/', serviceController.getAllService)
 
-router.get('/own-service',auth('TECHNICIAN'), serviceController.getAllService)
+router.get('/own-service',auth('TECHNICIAN'), serviceController.getOwnService)
 
 router.get('/:id', auth(), serviceController.getSingleService)
 

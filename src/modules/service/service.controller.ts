@@ -83,5 +83,6 @@ export const serviceController = {
   getAllService,
   getSingleService,
   updateService,
-  deleteService
-}
+  deleteService,
+  getOwnService,
+};

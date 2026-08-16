@@ -639,6 +639,14 @@ var getAllServiceDB = async (query) => {
     data
   };
 };
+var getOwnServiceDB = async (id) => {
+  const service = prisma.service.findMany({
+    where: {
+      technicianId: id
+    }
+  });
+  return service;
+};
 var getSingleServiceDB = async (id) => {
   const singleService = await prisma.service.findUniqueOrThrow({
     where: {
@@ -702,6 +710,7 @@ var deleteServiceDB = async (id, userId) => {
 var servicesService = {
   createServiceDB,
   getAllServiceDB,
+  getOwnServiceDB,
   getSingleServiceDB,
   updateServiceDB,
   deleteServiceDB
@@ -723,6 +732,17 @@ var getAllService = catchAsync_default(
       message: "Services fetched successfully",
       data: result.data,
       meta: result?.meta
+    });
+  }
+);
+var getOwnService = catchAsync_default(
+  async (req, res, next) => {
+    const result = await servicesService.getOwnServiceDB(req.user?.id);
+    successRes(res, {
+      success: true,
+      status: 200,
+      message: "Services fetched successfully",
+      data: result
     });
   }
 );
@@ -770,6 +790,7 @@ var serviceController = {
 var router3 = express3.Router();
 router3.post("/", jwtAuth_default("TECHNICIAN"), serviceController.creteService);
 router3.get("/", serviceController.getAllService);
+router3.get("/own-service", jwtAuth_default("TECHNICIAN"), serviceController.getAllService);
 router3.get("/:id", jwtAuth_default(), serviceController.getSingleService);
 router3.patch("/:id", jwtAuth_default(), serviceController.updateService);
 router3.delete("/:id", jwtAuth_default(), serviceController.deleteService);
