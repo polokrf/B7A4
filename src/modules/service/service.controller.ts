@@ -25,6 +25,19 @@ const getAllService = catchAsync(
     });
   },
 );
+const getOwnService = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await servicesService.getOwnServiceDB(req.user?.id as string);
+
+    successRes(res, {
+      success: true,
+      status: 200,
+      message: 'Services fetched successfully',
+      data: result,
+   
+    });
+  },
+);
 const getSingleService = catchAsync(async (req:Request, res:Response, next:NextFunction) => {
   const { id } = req.params
   

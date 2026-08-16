@@ -901,7 +901,7 @@ var availabilityController = {
 var router4 = express4.Router();
 router4.post("/", jwtAuth_default("TECHNICIAN"), availabilityController.createAvailability);
 router4.get("/", jwtAuth_default("TECHNICIAN"), availabilityController.getMyAvailability);
-router4.patch("/:id", jwtAuth_default("TECHNICIAN"), availabilityController.updateAvailability);
+router4.patch("/", jwtAuth_default("TECHNICIAN"), availabilityController.updateAvailability);
 router4.delete("/:id", jwtAuth_default("TECHNICIAN"), availabilityController.deleteAvailability);
 var availabilityRouter = router4;
 

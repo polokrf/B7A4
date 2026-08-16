@@ -107,6 +107,16 @@ const getAllServiceDB = async (query: Record<string, any>) => {
   };
 };
 
+const getOwnServiceDB = async (id) => {
+  const service = prisma.service.findMany({
+    where: {
+       technicianId:id
+     }
+   })
+
+  return service
+};
+
 const getSingleServiceDB = async (id: string) => {
   const singleService = await prisma.service.findUniqueOrThrow({
       where: {
@@ -187,6 +197,7 @@ const deleteServiceDB = async (id: string, userId: string) => {
 export const servicesService = {
   createServiceDB,
   getAllServiceDB,
+  getOwnServiceDB ,
   getSingleServiceDB,
   updateServiceDB,
   deleteServiceDB
