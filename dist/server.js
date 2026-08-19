@@ -783,14 +783,15 @@ var serviceController = {
   getAllService,
   getSingleService,
   updateService,
-  deleteService
+  deleteService,
+  getOwnService
 };
 
 // src/modules/service/service.route.ts
 var router3 = express3.Router();
 router3.post("/", jwtAuth_default("TECHNICIAN"), serviceController.creteService);
 router3.get("/", serviceController.getAllService);
-router3.get("/own-service", jwtAuth_default("TECHNICIAN"), serviceController.getAllService);
+router3.get("/own-service", jwtAuth_default("TECHNICIAN"), serviceController.getOwnService);
 router3.get("/:id", jwtAuth_default(), serviceController.getSingleService);
 router3.patch("/:id", jwtAuth_default(), serviceController.updateService);
 router3.delete("/:id", jwtAuth_default(), serviceController.deleteService);

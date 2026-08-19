@@ -15,10 +15,12 @@ import { adminRouter } from './modules/admin/admin.route';
 const app = express();
 
 
-app.use(cors({
-  origin: 'jkj',
-  credentials:true
-}))
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }),
+);
 
 
 
