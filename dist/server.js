@@ -1721,20 +1721,6 @@ var getAllBookingsFromDB = async () => {
   });
   return bookings;
 };
-var getAllServicesFromDB = async () => {
-  const services = await prisma.service.findMany({
-    include: {
-      technician: {
-        select: userBasicSelect3
-      },
-      category: true
-    },
-    orderBy: {
-      createdAt: "desc"
-    }
-  });
-  return services;
-};
 var createCategoryDB = async (payload) => {
   const result = await prisma.category.create({
     data: {
@@ -1778,11 +1764,23 @@ var deleteCategoryDB = async (id) => {
     }
   });
 };
+var getMetaDB = async () => {
+  const [user, booking, service] = await Promise.all([
+    prisma.user.count(),
+    prisma.booking.count(),
+    prisma.service.count()
+  ]);
+  return {
+    user,
+    booking,
+    service
+  };
+};
 var adminService = {
   getAllUsersFromDB,
   updateUserStatusInDB,
   getAllBookingsFromDB,
-  getAllServicesFromDB,
+  getMetaDB,
   getAllCategoryDB,
   createCategoryDB,
   deleteCategoryDB,
@@ -1821,17 +1819,6 @@ var getAllBookings = catchAsync_default(
       success: true,
       status: 200,
       message: "Bookings retrieved successfully",
-      data: result
-    });
-  }
-);
-var getAllServices = catchAsync_default(
-  async (req, res, next) => {
-    const result = await adminService.getAllServicesFromDB();
-    successRes(res, {
-      success: true,
-      status: 200,
-      message: "Services retrieved successfully",
       data: result
     });
   }
@@ -1882,11 +1869,20 @@ var deleteCategory = catchAsync_default(
     });
   }
 );
+var getMeta = catchAsync_default(async (req, res, next) => {
+  const result = await adminService.getMetaDB();
+  successRes(res, {
+    success: true,
+    status: 200,
+    message: "retrieve meta successfully",
+    data: result
+  });
+});
 var adminController = {
   getAllUsers,
   updateUserStatus,
   getAllBookings,
-  getAllServices,
+  getMeta,
   getAllCategory,
   createCategory,
   updateCategory,
@@ -1898,11 +1894,11 @@ var router8 = express8.Router();
 router8.get("/users", jwtAuth_default("ADMIN"), adminController.getAllUsers);
 router8.patch("/users/:id", jwtAuth_default("ADMIN"), adminController.updateUserStatus);
 router8.get("/bookings", jwtAuth_default("ADMIN"), adminController.getAllBookings);
-router8.get("/services", jwtAuth_default("ADMIN"), adminController.getAllServices);
 router8.get("/categories", adminController.getAllCategory);
 router8.post("/categories", jwtAuth_default("ADMIN"), adminController.createCategory);
 router8.patch("/categories/:id", jwtAuth_default("ADMIN"), adminController.updateCategory);
 router8.delete("/categories/:id", jwtAuth_default("ADMIN"), adminController.deleteCategory);
+router8.get("/meta", adminController.getMeta);
 var adminRouter = router8;
 
 // src/app.ts

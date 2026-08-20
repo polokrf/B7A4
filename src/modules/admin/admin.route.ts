@@ -17,7 +17,7 @@ router.post('/categories',auth('ADMIN'), adminController.createCategory);
 router.patch('/categories/:id',auth('ADMIN'), adminController.updateCategory);
 router.delete('/categories/:id', auth('ADMIN'), adminController.deleteCategory);
 
-router.get('/meta',adminController.getMeta)
+router.get('/meta',auth('ADMIN'),adminController.getMeta)
 
 export default router;
 export const adminRouter = router;
