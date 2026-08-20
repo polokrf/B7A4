@@ -1907,10 +1907,12 @@ var adminRouter = router8;
 
 // src/app.ts
 var app = express9();
-app.use(cors({
-  origin: "jkj",
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true
+  })
+);
 app.use(express9.json());
 app.use(express9.urlencoded({ extended: true }));
 app.use(cookieParser());

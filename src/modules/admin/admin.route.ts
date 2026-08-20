@@ -11,13 +11,13 @@ router.patch('/users/:id', auth('ADMIN'),adminController.updateUserStatus);
 
 
 router.get('/bookings',auth('ADMIN'), adminController.getAllBookings);
-router.get('/services',auth('ADMIN'), adminController.getAllServices);
-
 
 router.get('/categories', adminController.getAllCategory);
 router.post('/categories',auth('ADMIN'), adminController.createCategory);
 router.patch('/categories/:id',auth('ADMIN'), adminController.updateCategory);
-router.delete('/categories/:id',auth('ADMIN'), adminController.deleteCategory);
+router.delete('/categories/:id', auth('ADMIN'), adminController.deleteCategory);
+
+router.get('/meta',adminController.getMeta)
 
 export default router;
 export const adminRouter = router;

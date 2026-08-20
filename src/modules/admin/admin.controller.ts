@@ -46,18 +46,7 @@ const getAllBookings = catchAsync(
   },
 );
 
-const getAllServices = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const result = await adminService.getAllServicesFromDB();
 
-    successRes(res, {
-      success: true,
-      status: 200,
-      message: 'Services retrieved successfully',
-      data: result,
-    });
-  },
-);
 
 const createCategory = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -113,6 +102,15 @@ const deleteCategory = catchAsync(
   },
 );
 
+const getMeta = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+   const result = await adminService.getMetaDB();
+   successRes(res, {
+     success: true,
+     status: 200,
+     message: 'retrieve meta successfully',
+     data: result,
+   });
+})
 
 
 
@@ -120,7 +118,7 @@ export const adminController = {
   getAllUsers,
   updateUserStatus,
   getAllBookings,
-  getAllServices,
+  getMeta,
  getAllCategory,
   createCategory,
   updateCategory,

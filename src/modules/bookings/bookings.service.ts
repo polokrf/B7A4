@@ -52,6 +52,7 @@ const getAllBookingDB = async (userId: string, role:string) => {
     return prisma.booking.findMany({
       where: {
         customerId: userId,
+        
       },
     });
     

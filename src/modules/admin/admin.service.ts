@@ -102,22 +102,7 @@ const getAllBookingsFromDB = async () => {
   return bookings;
 };
 
-// 4. Get all services
-const getAllServicesFromDB = async () => {
-  const services = await prisma.service.findMany({
-    include: {
-      technician: {
-        select: userBasicSelect,
-      },
-      category: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
 
-  return services;
-};
 
 
 
@@ -178,12 +163,25 @@ const deleteCategoryDB = async (id: string) => {
   
 }
 
+const getMetaDB = async () => {
+   const [user, booking, service] = await Promise.all([
+     prisma.user.count(),
+     prisma.booking.count(),
+     prisma.service.count(),
+   ]);
+
+  return {
+    user,
+    booking,
+    service
+  }
+}
 
 export const adminService = {
   getAllUsersFromDB,
   updateUserStatusInDB,
   getAllBookingsFromDB,
-  getAllServicesFromDB,
+  getMetaDB,
   getAllCategoryDB,
   createCategoryDB,
   deleteCategoryDB,
