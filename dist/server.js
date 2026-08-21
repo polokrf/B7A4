@@ -1898,7 +1898,7 @@ router8.get("/categories", adminController.getAllCategory);
 router8.post("/categories", jwtAuth_default("ADMIN"), adminController.createCategory);
 router8.patch("/categories/:id", jwtAuth_default("ADMIN"), adminController.updateCategory);
 router8.delete("/categories/:id", jwtAuth_default("ADMIN"), adminController.deleteCategory);
-router8.get("/meta", adminController.getMeta);
+router8.get("/meta", jwtAuth_default("ADMIN"), adminController.getMeta);
 var adminRouter = router8;
 
 // src/app.ts

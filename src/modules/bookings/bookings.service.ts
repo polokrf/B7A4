@@ -46,26 +46,27 @@ const createBookingDB = async (payload:IBooking,userId:string) => {
   return result
 }
 
-const getAllBookingDB = async (userId: string, role:string) => {
-
+const getAllBookingDB = async (userId: string, role: string) => {
   if (role === Role.CUSTOMER) {
     return prisma.booking.findMany({
       where: {
         customerId: userId,
-        
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
-    
   }
 
   return prisma.booking.findMany({
     where: {
       technicianId: userId,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
-
- 
-}
+};
 const getSingleBookingDB = async (id:string,userId:string) => {
   const booking = await prisma.booking.findUniqueOrThrow({
     where: {
