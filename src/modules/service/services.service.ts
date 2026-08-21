@@ -35,7 +35,7 @@ const getAllServiceDB = async (query: Record<string, any>) => {
     sortBy = 'createdAt',
     sortOrder = 'desc',
     page = 1,
-    limit = 10,
+    limit = 9,
   } = query;
 
   const pageNum = Number(page) > 0 ? Number(page) : 1;
@@ -107,7 +107,7 @@ const getAllServiceDB = async (query: Record<string, any>) => {
   };
 };
 
-const getOwnServiceDB = async (id) => {
+const getOwnServiceDB = async (id:string) => {
   const service = prisma.service.findMany({
     where: {
        technicianId:id

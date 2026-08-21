@@ -973,12 +973,18 @@ var getAllBookingDB = async (userId, role) => {
     return prisma.booking.findMany({
       where: {
         customerId: userId
+      },
+      orderBy: {
+        createdAt: "desc"
       }
     });
   }
   return prisma.booking.findMany({
     where: {
       technicianId: userId
+    },
+    orderBy: {
+      createdAt: "desc"
     }
   });
 };

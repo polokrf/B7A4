@@ -24,7 +24,7 @@ const getTechnicianProDB = async (query: Record<string, any>) => {
     sortBy = 'createdAt',
     sortOrder = 'desc',
     page = 1,
-    limit = 10,
+    limit = 8,
   } = query;
 
   const pageNum = Number(page) > 0 ? Number(page) : 1;
