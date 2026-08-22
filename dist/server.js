@@ -394,7 +394,7 @@ var getTechnicianProDB = async (query) => {
     sortBy = "createdAt",
     sortOrder = "desc",
     page = 1,
-    limit = 10
+    limit = 8
   } = query;
   const pageNum = Number(page) > 0 ? Number(page) : 1;
   const limitNum = Number(limit) > 0 ? Number(limit) : 10;
@@ -586,7 +586,7 @@ var getAllServiceDB = async (query) => {
     sortBy = "createdAt",
     sortOrder = "desc",
     page = 1,
-    limit = 10
+    limit = 9
   } = query;
   const pageNum = Number(page) > 0 ? Number(page) : 1;
   const limitNum = Number(limit) > 0 ? Number(limit) : 10;

@@ -7,7 +7,7 @@ import { jwtToken } from "../../utils/jwt"
 import { Role } from "../../../generated/prisma/enums"
 
 const userRegisterDB = async (payload:IRegisterUser) => {
-  const { name, email, password, address, phone, role } = payload
+  const { name, email, password, address, phone, role,avatar } = payload
 
   if (role !== Role.CUSTOMER && role !== Role.TECHNICIAN) {
     throw new Error('Invalid role')
@@ -35,6 +35,7 @@ const userRegisterDB = async (payload:IRegisterUser) => {
       address,
       phone,
       role,
+      avatar
     },
     omit: {
       password: true,
